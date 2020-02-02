@@ -1,14 +1,15 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿//using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using NUnit.Framework;
 using TestNinja.Fundamentals;
 
 namespace TestNinja.UnitTests
 {
-    [TestClass]
+    [TestFixture]
     public class ReservationTests
     {
-        [TestMethod]
-        public void UT01_CanBeCancelledBy_UserIsAdmin_ReturnsTrue()
+        [Test]
+        public void UT01_CanBeCancelledBy_AdminCancelling_ReturnsTrue()
         {
             // Arrange
             var reservation = new Reservation();
@@ -17,30 +18,31 @@ namespace TestNinja.UnitTests
             var result = reservation.CanBeCancelledBy(new User { IsAdmin = true });
 
             // Assert
-            Assert.IsTrue(result);
+            Assert.That(result, Is.True); // same as Assert.IsTrue(result); and Assert.That(result == true);
         }
 
-        [TestMethod]
-        public void UT02_CanBeCancelledBy_MadeBy_ReturnsTrue()
+        [Test]
+        public void UT02_CanBeCancelledBy_SameUserCacelling_ReturnsTrue()
         {
             // Arrange
-            var reservation = new Reservation();
+            var user = new User();
+            var reservation = new Reservation { MadeBy = user };
 
             // Act
-            var result = reservation.CanBeCancelledBy(new User { IsAdmin = false });
+            var result = reservation.CanBeCancelledBy(user);
 
             // Assert
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        public void UT03_CanBeCancelledBy_OtherUser_ReturnsFalse()
+        [Test]
+        public void UT03_CanBeCancelledBy_AnotherUserCancelling_ReturnsFalse()
         {
             // Arrange
-            var reservation = new Reservation();
+            var reservation = new Reservation { MadeBy = new User() };
 
             // Act
-            var result = reservation.CanBeCancelledBy(new User { IsAdmin = false });
+            var result = reservation.CanBeCancelledBy(new User());
 
             // Assert
             Assert.IsFalse(result);
