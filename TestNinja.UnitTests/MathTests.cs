@@ -1,5 +1,6 @@
 ﻿using TestNinja.Fundamentals;
 using NUnit.Framework;
+using System.Linq;
 
 namespace TestNinja.UnitTests
 {
@@ -14,6 +15,11 @@ namespace TestNinja.UnitTests
             // Arrange
             _math = new Math();
         }
+
+        /*
+         *
+         * 20. Writing a Simple Unit Test
+         */
 
         [Test]
         //[Ignore("Because I wanted to")]
@@ -37,6 +43,36 @@ namespace TestNinja.UnitTests
 
             //Assert
             Assert.That(result, Is.EqualTo(expectedResult));
+        }
+
+        /*
+         *
+         * 30. Testing Arrays and Collections
+         */
+
+        [Test]
+        public void GetOddNumbers_LimitIsGreaterThanZero_ReturnOddNumbersUpToLimit()
+        {
+            // Act
+            var result = _math.GetOddNumbers(5);
+
+            //Assert
+            Assert.That(result, Is.Not.Empty);
+
+            //Assert
+            Assert.That(result.Count(), Is.EqualTo(3));
+
+            //Assert
+            Assert.That(result, Does.Contain(1));
+            Assert.That(result, Does.Contain(3));
+            Assert.That(result, Does.Contain(5));
+
+            //Assert
+            Assert.That(result, Is.EquivalentTo(new[] { 1, 3, 5 }));
+
+            // Assert
+            Assert.That(result, Is.Ordered);
+            Assert.That(result, Is.Unique);
         }
     }
 }
