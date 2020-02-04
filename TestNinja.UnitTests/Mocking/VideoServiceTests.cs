@@ -18,7 +18,8 @@ namespace TestNinja.UnitTests.Mocking
             var service = new VideoService();
 
             // Act
-            var result = service.ReadVideoTitle(new FakeFileReader());
+            //var result = service.ReadVideoTitle(new FakeFileReader());
+            var result = service.ReadVideoTitle();
 
             // Assert
             Assert.That(result, Does.Contain("error").IgnoreCase);
