@@ -8,14 +8,14 @@ namespace TestNinja.UnitTests.Mocking
     internal class VideoServiceTests
     {
         private Mock<IFileReader> _mockFileReader;
-        private VideoService _service;
+        private VideoService _videoService;
 
         [SetUp]
         public void SetUp()
         {
             // Arrange
             _mockFileReader = new Mock<IFileReader>();
-            _service = new VideoService(_mockFileReader.Object);
+            _videoService = new VideoService(_mockFileReader.Object);
         }
 
         /*
@@ -32,7 +32,7 @@ namespace TestNinja.UnitTests.Mocking
 
             // Act
             //var result = service.ReadVideoTitle(new FakeFileReader());
-            var result = _service.ReadVideoTitle();
+            var result = _videoService.ReadVideoTitle();
 
             // Assert
             Assert.That(result, Does.Contain("error").IgnoreCase);
