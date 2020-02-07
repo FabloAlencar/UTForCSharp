@@ -1,5 +1,5 @@
-﻿using TestNinja.Fundamentals;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using TestNinja.Fundamentals;
 
 /*
  * 31. Testing the Return Type of Methods
