@@ -26,7 +26,7 @@ namespace TestNinja.UnitTests.Mocking
             };
 
             _mockRepository = new Mock<IBookingRepository>();
-            _mockRepository.Setup(r => r.GetActiveBooking(1)).Returns(new List<Booking>
+            _mockRepository.Setup(r => r.GetActiveBookings(1)).Returns(new List<Booking>
             {
             _existingBooking
             }.AsQueryable());

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace TestNinja.Mocking
 {
-    public class HousekeeperService
+    public class HouseKeeperService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IStatementGenerator _statementGenerator;
@@ -15,7 +15,7 @@ namespace TestNinja.Mocking
 
         //private static readonly UnitOfWork UnitOfWork = new UnitOfWork();
 
-        public HousekeeperService(
+        public HouseKeeperService(
             IUnitOfWork unitOfWork,
             IStatementGenerator statementGenerator,
             IEmailSender emailSender,

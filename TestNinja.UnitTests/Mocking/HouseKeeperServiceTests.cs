@@ -11,9 +11,9 @@ namespace TestNinja.UnitTests.Mocking
     public class HouseKeeperServiceTests
     {
         private Mock<IStatementGenerator> _mockStatementGenerator;
-        private Mock<EmailSender> _mockEmailSender;
+        private Mock<IEmailSender> _mockEmailSender;
         private Mock<IXtraMessageBox> _mockMessageBox;
-        private HousekeeperService _service;
+        private HouseKeeperService _service;
         private DateTime _statementDate = new DateTime(2017, 1, 1);
         private Housekeeper _houseKeeper;
         private string _statementFileName;
@@ -36,10 +36,10 @@ namespace TestNinja.UnitTests.Mocking
                             .Setup(sg => sg.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, (_statementDate)))
                             .Returns(() => _statementFileName);
 
-            _mockEmailSender = new Mock<EmailSender>();
+            _mockEmailSender = new Mock<IEmailSender>();
             _mockMessageBox = new Mock<IXtraMessageBox>();
 
-            _service = new HousekeeperService(
+            _service = new HouseKeeperService(
                mockUnitOfWork.Object,
                _mockStatementGenerator.Object,
                _mockEmailSender.Object,
